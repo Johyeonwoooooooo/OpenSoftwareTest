@@ -3,7 +3,7 @@ import requests
 import json
  
 def request_data():
-    apikey = ''
+    apikey = '360bfc50b4154894b83c'
     request_url = f'https://openapi.foodsafetykorea.go.kr/api/{apikey}/COOKRCP01/json/1/1000'
     response = requests.get(request_url)
     data =response.json()
