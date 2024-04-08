@@ -11,7 +11,7 @@ def request_data():
     recipe_names = [item['RCP_NM'] for item in data['COOKRCP01']['row']]
     recipe_ingredients = [item['RCP_PARTS_DTLS'].replace('●', '').replace('-', '').replace('•', '')
                           .replace('주재료 : ', '').replace('필수 재료 : ', '').replace('재료 ','')
-                          .replace('[ 2인분 ] ', '') for item in data['COOKRCP01']['row']]
+                          .replace('[ 2인분 ] ', '').replace('\n', ', ').replace(',', '') for item in data['COOKRCP01']['row']]
     return recipe_names, recipe_ingredients
 
 recipe_name, ingredient_list = request_data()
