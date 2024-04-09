@@ -17,11 +17,15 @@ def request_data():
 
 recipe_name, ingredient_list = request_data()
 
-print(recipe_name[480])
-print(recipe_name[481])
-print(recipe_name[493])
-print(recipe_name[494])
-print(recipe_name[952])
+# print(recipe_name[480])
+# print(recipe_name[481])
+# print(recipe_name[493])
+# print(recipe_name[494])
+# print(recipe_name[952])
+
+
+print(recipe_name[0])
+print(recipe_name[429])
 #print(recipe_ingredient[0])
 
 # with open('recipe_ingredients.txt', 'w', encoding='utf-8') as file:
