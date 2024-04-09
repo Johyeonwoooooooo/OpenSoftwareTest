@@ -9,15 +9,20 @@ def request_data():
     data =response.json()
     
     recipe_names = [item['RCP_NM'] for item in data['COOKRCP01']['row']]
-    recipe_ingredients = [item['RCP_PARTS_DTLS'].replace('●', '').replace('-', '').replace('•', '')
-                          .replace('주재료 : ', '').replace('필수 재료 : ', '').replace('재료 ','')
-                          .replace('[ 2인분 ] ', '').replace('\n', ', ').replace(',', '') for item in data['COOKRCP01']['row']]
+    recipe_ingredients = []
+    # recipe_ingredients = [item['RCP_PARTS_DTLS'].replace('?��', '').replace('-', '').replace('???', '')
+    #                       .replace('주재�? : ', '').replace('?��?�� ?���? : ', '').replace('?���? ','')
+    #                       .replace('[ 2?���? ] ', '').replace('\n', ', ').replace(',', '') for item in data['COOKRCP01']['row']]
     return recipe_names, recipe_ingredients
 
 recipe_name, ingredient_list = request_data()
 
-# print(recipe_name)
+print(recipe_name[480])
+print(recipe_name[481])
+print(recipe_name[493])
+print(recipe_name[494])
+print(recipe_name[952])
 #print(recipe_ingredient[0])
 
-with open('recipe_ingredients.txt', 'w', encoding='utf-8') as file:
-    json.dump(ingredient_list, file, ensure_ascii=False, indent=4)
+# with open('recipe_ingredients.txt', 'w', encoding='utf-8') as file:
+#     json.dump(ingredient_list, file, ensure_ascii=False, indent=4)
