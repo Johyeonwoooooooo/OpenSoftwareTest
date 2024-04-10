@@ -1,8 +1,8 @@
 import re
 import pickle
 
-file_path = "C:/OpenSoftware_test/recipe_ingredients.txt"
-
+# file_path = "C:/OpenSoftware_test/recipe_ingredients.txt" #labtop
+file_path = "C:\\OSSP\\OpenSoftwareTest\\recipe_ingredients.txt" #desktop
 with open(file_path, 'r', encoding='utf-8') as file:
     data = file.read().strip()
 
@@ -19,7 +19,7 @@ for i in range(0, len(ingredients_list), 2):
 
 # print(ingredient_count_list)
 
-# print(ingredient_index.keys())
+print(ingredient_index.keys())
 # print(len(ingredient_index))
 
 with open('ingredient_index.pkl', 'wb') as file:

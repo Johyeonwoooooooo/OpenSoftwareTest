@@ -2,7 +2,7 @@ import re
 from gensim.models import Word2Vec
 import numpy as np
 
-file_path = "C:\\OSSP\\OpenSoftwareTest\\recipe_ingredients.txt"  # 파일 경로를 바꿔주세요
+file_path = "C:\\OSSP\\OpenSoftwareTest\\recipe_ingredients.txt" 
 
 # 레시피 데이터 읽어오기
 recipes = []
