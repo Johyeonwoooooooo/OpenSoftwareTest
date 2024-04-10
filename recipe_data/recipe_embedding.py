@@ -23,23 +23,21 @@ def embed_recipe(recipe, model):
         if word in model:
             embedding.append(model[word])
     if len(embedding) == 0:
-        return np.zeros(model.vector_size)  # Return zero vector if no word in the model
-    return np.mean(embedding, axis=0)  # Take the mean of word embeddings
+        return np.zeros(model.vector_size)
+    return np.mean(embedding, axis=0) 
 
-def embed_recipe_with_weights(recipe, model, weight_for_pasta):
+def embed_recipe_with_weights(recipe, model, user_ingredients):
     embedding = []
     for word in recipe:
         if word in model:
-            # 파스타면과 같은 특정 재료일 경우 가중치 적용
-            weight = weight_for_pasta if word == '파스타면' else 1.0
+            weight = 2.0 if word in user_ingredients else 1.0
+            embedding.append(model[word] * weight)
             embedding.append(model[word] * weight)
     if len(embedding) == 0:
-        return np.zeros(model.vector_size)  # Return zero vector if no word in the model
-    return np.mean(embedding, axis=0)  # Take the mean of weighted word embeddings
+        return np.zeros(model.vector_size)
+    return np.mean(embedding, axis=0)
 
-weight_for_pasta = 2.0
-# Embed all recipes
-embedded_recipes = [embed_recipe_with_weights(recipe, word2vec_model.wv, weight_for_pasta) for recipe in recipes]
+embedded_recipes = [embed_recipe(recipe, word2vec_model.wv) for recipe in recipes]
 
 # Calculate cosine similarity
 def cosine_similarity(vec1, vec2):
@@ -49,8 +47,9 @@ def cosine_similarity(vec1, vec2):
     return dot_product / (norm_vec1 * norm_vec2)
 
 # Embed your ingredient
-my_ingredient = ['파스타면', '올리브유', '파슬리', '치즈', '우유']  # 임베딩을 위해 재료를 단어 단위로 분할
-my_vector = embed_recipe_with_weights(my_ingredient, word2vec_model.wv, weight_for_pasta)
+my_ingredient = ['파스타면', '바질']
+my_vector = embed_recipe(my_ingredient, word2vec_model.wv)
+# embed_recipe_with_weights(my_ingredient, word2vec_model.wv, ['파스타면', '바질'])
 
 # Calculate similarity between your ingredient and all recipes
 similarities = [cosine_similarity(my_vector, embedded_recipe) for embedded_recipe in embedded_recipes]
