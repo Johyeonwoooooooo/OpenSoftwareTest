@@ -3,14 +3,14 @@ from gensim.models import Word2Vec
 import numpy as np
 import pickle
 
-file_path = "C:\\OSSP\\OpenSoftwareTest\\recipe_ingredients.txt"
+# file_path = "C:\\OSSP\\OpenSoftwareTest\\recipe_ingredients.txt" # desktop
+file_path = "C:\\OpenSoftware_test\\recipe_ingredients.txt" # labtop
 
-# 레시피 데이터 읽어오기
 recipes = []
 with open(file_path, 'r', encoding='utf-8') as file:
     for line in file:
         line = line.strip()
-        if line:  # 빈 줄은 건너뜁니다
+        if line: 
             line = re.split(r'\s+', line)
             recipe = [line[i] for i in range(0, len(line), 2)]
             recipes.append(recipe)
