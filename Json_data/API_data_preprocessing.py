@@ -8,25 +8,16 @@ def request_data():
     response = requests.get(request_url)
     data =response.json()
     
-    recipe_names = [item['RCP_NM'] for item in data['COOKRCP01']['row']]
-    recipe_ingredients = []
+    #recipe_names = [item['RCP_NM'] for item in data['COOKRCP01']['row']]
+    recipe_category = [item['HASH_TAG'] for item in data['COOKRCP01']['row']]
+    #recipe_ingredients = []
     # recipe_ingredients = [item['RCP_PARTS_DTLS'].replace('?ï¿½ï¿½', '').replace('-', '').replace('???', '')
-    #                       .replace('ì£¼ìž¬ï¿½? : ', '').replace('?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ï¿½? : ', '').replace('?ï¿½ï¿½ï¿½? ','')
-    #                       .replace('[ 2?ï¿½ï¿½ï¿½? ] ', '').replace('\n', ', ').replace(',', '') for item in data['COOKRCP01']['row']]
-    return recipe_names, recipe_ingredients
+    #                       .replace('ì£¼ìž¬ï¿?? : ', '').replace('?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ï¿?? : ', '').replace('?ï¿½ï¿½ï¿?? ','')
+    #                       .replace('[ 2?ï¿½ï¿½ï¿?? ] ', '').replace('\n', ', ').replace(',', '') for item in data['COOKRCP01']['row']]
 
-recipe_name, ingredient_list = request_data()
+    return recipe_category # recipe_names, recipe_ingredients
 
-# print(recipe_name[480])
-# print(recipe_name[481])
-# print(recipe_name[493])
-# print(recipe_name[494])
-# print(recipe_name[952])
+# recipe_name, ingredient_list = request_data()
 
-
-print(recipe_name[0])
-print(recipe_name[429])
-#print(recipe_ingredient[0])
-
-# with open('recipe_ingredients.txt', 'w', encoding='utf-8') as file:
-#     json.dump(ingredient_list, file, ensure_ascii=False, indent=4)
+recipe_category = request_data()
+print(recipe_category)

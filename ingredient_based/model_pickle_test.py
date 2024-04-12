@@ -18,7 +18,7 @@ with open(file_path, 'r', encoding='utf-8') as file:
 with open('ingredient_based_recommend_model.pkl', 'rb') as file:
     loaded_model = pickle.load(file)
 
-similarities = loaded_model.score(['파스타면', '바질'])
+similarities = loaded_model.score(['돼지고기', '김치'])
 
 
 most_similar_indices = np.argsort(similarities)[::-1][:5]
