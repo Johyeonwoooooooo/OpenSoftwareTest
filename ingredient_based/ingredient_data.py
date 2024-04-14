@@ -15,8 +15,8 @@ for i in range(0, len(ingredients_list), 2):
         ingredient_index[ingredients_list[i]] = index
         index += 1
 
-print(ingredient_index.keys())
-# print(len(ingredient_index)) 
+# print(ingredient_index.keys())
+print(len(ingredient_index)) 
 
 with open('ingredient_index.pkl', 'wb') as file:
     pickle.dump(ingredient_index, file)
