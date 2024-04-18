@@ -38,6 +38,8 @@ class IBRM:
         return np.mean(np.array(embedding), axis=0)
 
     def score(self, ingredients):
+        if ingredients == []:
+            return [0 for i in range(100)]
         ingredient_vector = self.embed_recipe(recipe=ingredients)
         similarities = [self.cosine_similarity(ingredient_vector, embedded_recipe) for embedded_recipe in self.embedded_recipes]
         return similarities

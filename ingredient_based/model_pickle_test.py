@@ -18,12 +18,12 @@ with open(file_path, 'r', encoding='utf-8') as file:
 with open('ingredient_based_recommend_model.pkl', 'rb') as file:
     loaded_model = pickle.load(file)
 
-similarities = loaded_model.score(['돼지고기', '설탕'])
+similarities = loaded_model.score([])
 
 
-most_similar_indices = np.argsort(similarities)[::-1][:5]
+most_similar_indices = np.argsort(similarities)[::-1]
 print("Most similar recipes (top 5):")
-for index in most_similar_indices:
-    print(recipes[index])
+# for index in most_similar_indices:
+#     print(recipes[index])
 
 print(most_similar_indices)
