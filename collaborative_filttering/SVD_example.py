@@ -29,8 +29,6 @@ new_user = np.array([22, 5, 3, 4, 2])  # 나이, 음식에 대한 선호도, 성
 
 new_user_feature = np.dot(new_user[1:], Vt.T)
 
-
-
 # 기존 사용자 중 새로운 사용자와 가장 비슷한 사용자 찾기
 similar_user_index = np.argmax(np.dot(U, new_user_feature.T))
 

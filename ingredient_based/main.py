@@ -1,7 +1,7 @@
 import pickle
 import re
 from modelByIngredient import IBRM 
-
+from gensim.models import Word2Vec
 
 file_path = "C:\\OpenSoftware_test\\recipe_ingredients.txt"
 recipes_ingredient = []
@@ -16,5 +16,6 @@ with open(file_path, 'r', encoding='utf-8') as file:
 
 
 ingredient_recommend_model = IBRM(recipes_ingredient)
+
 with open('ingredient_based_recommend_model.pkl', 'wb') as file:
     pickle.dump(ingredient_recommend_model, file)
