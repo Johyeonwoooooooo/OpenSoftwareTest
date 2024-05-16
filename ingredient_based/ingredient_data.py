@@ -1,8 +1,8 @@
 import re
 import pickle
 
-# file_path = "C:/OpenSoftware_test/recipe_ingredients.txt" #labtop
-file_path = "C:\\OSSP\\OpenSoftwareTest\\recipe_ingredients.txt" #desktop
+file_path = "C:\\OpenSoftware_test\\Json_data\\recipe_ingredients.txt" #labtop
+
 with open(file_path, 'r', encoding='utf-8') as file:
     data = file.read().strip()
 
@@ -15,8 +15,9 @@ for i in range(0, len(ingredients_list), 2):
         ingredient_index[ingredients_list[i]] = index
         index += 1
 
-# print(ingredient_index.keys())
-print(len(ingredient_index)) 
+print(ingredient_index.keys())
+#print(len(ingredient_index)) 
 
-with open('ingredient_index.pkl', 'wb') as file:
-    pickle.dump(ingredient_index, file)
+with open('ingredientList.txt', 'w', encoding='utf-8') as file:
+     for name in ingredient_index.keys():
+         file.write(name + '\n')
