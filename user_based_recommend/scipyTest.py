@@ -29,15 +29,16 @@ for i, (user, (recipes, gender, age)) in enumerate(user_info.items()):
         rows.append(i)
         cols.append(recipe)
         data.append(1)
-    additional_features.append([gender, normalize_age(age)])
+    additional_features.append([normalize_age(age), gender])
 
 # 희소 행렬 생성
 user_recipe_matrix = csr_matrix((data, (rows, cols)), shape=(len(user_info), recipe_count))
 
 # 추가 특성(성별, 나이)을 넘파이 배열로 변환 후 희소 행렬과 결합
 additional_features = np.array(additional_features)
-user_features_matrix = np.hstack((user_recipe_matrix.toarray(), additional_features))
+user_features_matrix = np.hstack((additional_features, user_recipe_matrix.toarray()))
 
+print(user_features_matrix)
 # 코사인 유사도 계산
 cosine_sim = cosine_similarity(user_features_matrix)
 

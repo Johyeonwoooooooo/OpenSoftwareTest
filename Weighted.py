@@ -2,12 +2,12 @@ import numpy as np
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Embedding, Flatten, Dot, Dense
 
-# ÇÏÀÌÆÛÆÄ¶ó¹ÌÅÍ ¼³Á¤
-num_users = 1000  # »ç¿ëÀÚ ¼ö
-num_recipes = 5000  # ·¹½ÃÇÇ ¼ö
-embedding_size = 50  # ÀÓº£µù Â÷¿ø
+# í•˜ì´í¼íŒŒë¼ë¯¸í„° ì„¤ì •
+num_users = 100  # ì‚¬ìš©ì ìˆ˜
+num_recipes = 1000  # ë ˆì‹œí”¼ ìˆ˜
+embedding_size = 50  # ì„ë² ë”© ì°¨ì›
 
-# ¸ğµ¨ ±¸Ãà
+# ëª¨ë¸ êµ¬ì¶•
 user_input = Input(shape=(1,))
 recipe_input = Input(shape=(1,))
 
@@ -19,20 +19,21 @@ recipe_vector = Flatten()(recipe_embedding)
 
 dot_product = Dot(axes=1)([user_vector, recipe_vector])
 
-# ÇÇµå¹éÀ» ¹İ¿µÇÑ Dense Ãş Ãß°¡
+# í”¼ë“œë°±ì„ ë°˜ì˜í•œ Dense ì¸µ ì¶”ê°€
 dense = Dense(128, activation='relu')(dot_product)
 output = Dense(1, activation='sigmoid')(dense)
 
 model = Model(inputs=[user_input, recipe_input], outputs=output)
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
-# µ¥ÀÌÅÍ ÁØºñ (»ùÇÃ µ¥ÀÌÅÍ)
-user_ids = np.random.randint(0, num_users, size=10000)
-recipe_ids = np.random.randint(0, num_recipes, size=10000)
-ratings = np.random.randint(0, 2, size=10000)  # ÇÇµå¹é (0 ¶Ç´Â 1)
+# ë°ì´í„° ì¤€ë¹„ (ìƒ˜í”Œ ë°ì´í„°)
+user_ids = np.random.randint(0, num_users, size=1000)
+recipe_ids = np.random.randint(0, num_recipes, size=1000)
+ratings = np.random.randint(0, 2, size=1000)  # í”¼ë“œë°± (0 ë˜ëŠ” 1)
 
-# ¸ğµ¨ ÇĞ½À
+# ëª¨ë¸ í•™ìŠµ
 model.fit([user_ids, recipe_ids], ratings, epochs=10, batch_size=64)
 
-# ¿¹Ãø
+# ì˜ˆì¸¡
 predictions = model.predict([user_ids, recipe_ids])
+print(predictions[9])
